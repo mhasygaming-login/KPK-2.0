@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Trading & Financial Intelligence Terminal - KPK</title>
+  <meta name="description" content="Dashboard Analisis dan Visualisasi Forensik Finansial Kerugian Negara Bertema Trading Terminal Bloomberg / TradingView KPK RI.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'Menlo', 'monospace'],
+            display: ['"Orbitron"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-[#050811] text-[#F8FAFC] min-h-screen flex flex-col font-sans selection:bg-[#00F0FF]/30 selection:text-[#00F0FF]">
+
+  <!-- Ambient Glowing Orbs Background -->
+  <div class="glow-orb glow-orb-cyan -top-40 -left-40"></div>
+  <div class="glow-orb glow-orb-red top-1/3 -right-40"></div>
+
+  <!-- Top Real-Time Cyber HUD Marquee -->
+  <div class="ticker-container border-b border-[#00F0FF]/20 bg-[#050811]">
+    <div class="ticker-track">
+      <div class="ticker-item">
+        <span class="led-indicator led-green"></span>
+        <span class="text-slate-400">KPK RECOVERY RATE:</span>
+        <span class="ticker-up">9.52% ▲</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-slate-400">TOTAL DISITA / PULIH:</span>
+        <span class="ticker-cyan">Rp 38.40T ▲</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-slate-400">TOTAL BEBAN KERUGIAN NEGARA:</span>
+        <span class="ticker-down">Rp 403.17T ▼</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-slate-400">KASUS AKTIF SIDANG:</span>
+        <span class="text-amber-400">144 PERKARA</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-slate-400">INKRACHT VONIS:</span>
+        <span class="ticker-up">1,284 TERPIDANA ▲</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-slate-400">AUDIT FORENSIK BPK/BPKP:</span>
+        <span class="text-[#00FF88]">100% VERIFIED</span>
+      </div>
+      <!-- Duplicate items for smooth continuous loop -->
+      <div class="ticker-item">
+        <span class="led-indicator led-green"></span>
+        <span class="text-slate-400">KPK RECOVERY RATE:</span>
+        <span class="ticker-up">9.52% ▲</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-slate-400">TOTAL DISITA / PULIH:</span>
+        <span class="ticker-cyan">Rp 38.40T ▲</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-slate-400">TOTAL BEBAN KERUGIAN NEGARA:</span>
+        <span class="ticker-down">Rp 403.17T ▼</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Cyber Header / Navbar -->
+  <header class="sticky top-0 z-40 bg-[#090D16]/90 backdrop-blur-xl border-b border-[#00F0FF]/25 shadow-[0_4px_25px_rgba(0,0,0,0.5)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/" class="flex items-center gap-3 text-white no-underline group">
+          <div class="w-10 h-10 rounded-xl bg-[#FF1A40] flex items-center justify-center text-white shadow-[0_0_15px_rgba(255,26,64,0.5)] group-hover:shadow-[0_0_25px_rgba(255,26,64,0.8)] transition-all border border-red-400/40">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" stroke-width="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="2"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-bold text-base tracking-tight text-white flex items-center gap-2 font-display">
+              Portal Transparansi
+              <span class="led-indicator led-cyan"></span>
+            </div>
+            <div class="text-[11px] text-[#00F0FF] font-mono tracking-wider uppercase">
+              Trading Terminal
+            </div>
+          </div>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex items-center gap-2 font-mono text-xs">
+          <a href="/#beranda" class="px-3.5 py-2 font-semibold text-slate-300 hover:text-white rounded-lg transition-colors">BERANDA</a>
+          <a href="/analisis.html" class="px-3.5 py-2 font-bold bg-[#00F0FF]/15 text-[#00F0FF] border border-[#00F0FF]/40 rounded-lg shadow-[0_0_15px_rgba(0,240,255,0.2)]">TRADING TERMINAL</a>
+          <a href="/galeri.html" class="px-3.5 py-2 font-semibold text-slate-300 hover:text-white rounded-lg transition-colors">GALERI PELAKU</a>
+          <a href="/laporan.html" class="px-3.5 py-2 font-semibold text-slate-300 hover:text-white rounded-lg transition-colors">PENGADUAN</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Trading Platform Terminal Workspace -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full space-y-6">
+
+    <!-- Terminal Banner Info Bar -->
+    <div class="cyber-panel rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4 shadow-xl border border-[#00F0FF]/25">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="led-indicator led-green"></span>
+          <span class="text-xs font-mono font-bold text-[#00F0FF] uppercase tracking-wider">LIVE FORENSIC AUDIT TERMINAL</span>
+          <span class="text-xs text-slate-400 font-mono">| INSTRUMENT: KPK-FISCAL/IDR</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-black text-white tracking-tight font-display">
+          Cyber Trading & Forensic Asset Recovery Dashboard
+        </h1>
+        <p class="text-slate-300 text-xs sm:text-sm mt-1 font-sans">
+          Pelacakan dinamika kerugian fiskal negara dan performa perampasan aset (Asset Forfeiture Engine) secara real-time.
+        </p>
+      </div>
+
+      <!-- Quick Metrics Ribbon -->
+      <div class="flex items-center gap-3 font-mono">
+        <div class="bg-[#050811] border border-[#00FF88]/30 p-3 rounded-xl text-right">
+          <span class="text-[10px] text-slate-400 block uppercase">MARKET RECOVERY</span>
+          <span class="text-base sm:text-lg font-black text-[#00FF88] glow-emerald">9.52% <span class="text-xs font-normal">▲</span></span>
+        </div>
+        <div class="bg-[#050811] border border-[#FF1A40]/30 p-3 rounded-xl text-right">
+          <span class="text-[10px] text-slate-400 block uppercase">AUDIT EQUIVALENT</span>
+          <span class="text-base sm:text-lg font-black text-[#FF1A40] glow-crimson">Rp 403.17 T</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN TRADING TERMINAL BOX -->
+    <div class="trading-terminal border border-[#00F0FF]/30 rounded-2xl overflow-hidden bg-[#090D16] shadow-2xl relative">
+      <div class="corner-bracket-tl"></div>
+      <div class="corner-bracket-br"></div>
+
+      <!-- Terminal Control Header -->
+      <div class="terminal-header flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 border-b border-[#00F0FF]/20 bg-[#050811] p-3 sm:p-4">
+        
+        <!-- Left: Asset Tag & View Mode Tabs -->
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="px-2.5 py-1 rounded bg-[#FF1A40]/15 border border-[#FF1A40]/40 text-[#FF1A40] font-mono text-xs font-bold flex items-center gap-1.5 shadow-[0_0_10px_rgba(255,26,64,0.3)]">
+            <span class="led-indicator led-red"></span>
+            KPK-LOSS/ASSET
+          </div>
+
+          <!-- View Mode Switcher -->
+          <div class="bg-[#090D16] p-1 rounded-lg border border-[#00F0FF]/25 flex flex-wrap gap-1 font-mono">
+            <button data-view="overview" class="terminal-view-btn terminal-tab-btn active text-xs font-bold px-3 py-1.5 rounded transition-all">
+              📈 Kerugian vs Pemulihan
+            </button>
+            <button data-view="sector" class="terminal-view-btn terminal-tab-btn text-slate-400 hover:text-white text-xs font-bold px-3 py-1.5 rounded transition-all">
+              📊 Kerugian per Sektor
+            </button>
+            <button data-view="candlestick" class="terminal-view-btn terminal-tab-btn text-slate-400 hover:text-white text-xs font-bold px-3 py-1.5 rounded transition-all">
+              🕯️ Fluktuasi Bulanan 2024
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Timeframe Selectors -->
+        <div class="flex items-center gap-2 font-mono">
+          <span class="text-xs text-slate-400 font-bold hidden sm:inline">TIMEFRAME:</span>
+          <div class="bg-[#090D16] p-1 rounded-lg border border-[#00F0FF]/25 flex gap-1 text-xs">
+            <button data-tf="1m" class="terminal-tf-btn px-2.5 py-1 rounded font-bold text-slate-400 hover:text-white transition-colors">1 Bulan</button>
+            <button data-tf="6m" class="terminal-tf-btn px-2.5 py-1 rounded font-bold text-slate-400 hover:text-white transition-colors">6 Bulan</button>
+            <button data-tf="1y" class="terminal-tf-btn px-2.5 py-1 rounded font-bold text-slate-400 hover:text-white transition-colors">1 Tahun</button>
+            <button data-tf="all" class="terminal-tf-btn px-2.5 py-1 rounded font-bold active bg-[#00F0FF] text-[#050811] shadow-[0_0_12px_rgba(0,240,255,0.4)]">Semua</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart Screen + Live Orderbook / Audit Feed Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 border-b border-[#00F0FF]/20">
+        <!-- Main Interactive Chart Canvas -->
+        <div class="lg:col-span-8 p-4 sm:p-6 bg-[#050811] border-b lg:border-b-0 lg:border-r border-[#00F0FF]/20">
+          <div class="flex items-center justify-between mb-4 font-mono">
+            <div>
+              <span class="text-xs font-bold text-[#00F0FF] uppercase tracking-wider block">CHART FORENSIC MONITOR</span>
+              <span class="text-xs text-slate-400 font-sans">Skala Triliun Rupiah (Glow Shading & Gradient Volatility)</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#FF1A40]"></span> Kerugian</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#00F0FF]"></span> Aset Dirampas</span>
+            </div>
+          </div>
+
+          <div class="h-96 w-full relative">
+            <canvas id="tradingChartCanvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Live Forensic Orderbook / Audit Stream -->
+        <div class="lg:col-span-4 p-4 sm:p-5 bg-[#090D16]/90 flex flex-col justify-between font-mono">
+          <div>
+            <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-3">
+              <span class="text-xs font-bold text-slate-300 uppercase flex items-center gap-1.5">
+                <span class="led-indicator led-green"></span>
+                LIVE AUDIT EXECUTION STREAM
+              </span>
+              <span class="text-[10px] text-[#00F0FF] px-2 py-0.5 rounded bg-[#00F0FF]/10 border border-[#00F0FF]/30 font-bold">REAL-TIME</span>
+            </div>
+
+            <!-- List of audit feed items populated by charts.js -->
+            <div id="liveAuditFeedList" class="space-y-1">
+              <!-- Rendered via initTickerStream in charts.js -->
+            </div>
+          </div>
+
+          <!-- Bottom Audit Integrity Seal -->
+          <div class="mt-6 pt-4 border-t border-slate-800 bg-[#050811] p-3 rounded-xl border border-[#00F0FF]/20">
+            <div class="text-[11px] text-slate-400 flex items-center justify-between">
+              <span>Sertifikasi Forensik:</span>
+              <span class="text-[#00F0FF] font-bold">KPK-BPK-PPATK</span>
+            </div>
+            <p class="text-[11px] text-slate-500 mt-1">
+              Enkripsi data SHA-256 terverifikasi. Seluruh eksekusi putusan inkracht ditindaklanjuti Tim Pelacak Aset KPK.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary In-Depth Charts Section (10 Kasus & Distribusi Sektor) -->
+    <div class="pt-4">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="text-lg font-bold text-white font-display">Rincian Perkara Besar & Distribusi Sektoral</h2>
+          <p class="text-xs text-slate-400 font-sans">Dapat difilter berdasarkan tahun penindakan hukum.</p>
+        </div>
+        
+        <!-- Year Filter Buttons -->
+        <div class="bg-[#090D16] p-1 rounded-xl border border-[#00F0FF]/25 flex flex-wrap gap-1 font-mono text-xs">
+          <button data-year="all" class="year-filter-btn px-3 py-1 font-bold rounded-lg transition-all active bg-[#00F0FF] text-[#050811]">Semua</button>
+          <button data-year="2024" class="year-filter-btn px-3 py-1 font-bold rounded-lg transition-all text-slate-400 hover:text-white">2024</button>
+          <button data-year="2023" class="year-filter-btn px-3 py-1 font-bold rounded-lg transition-all text-slate-400 hover:text-white">2023</button>
+          <button data-year="2022" class="year-filter-btn px-3 py-1 font-bold rounded-lg transition-all text-slate-400 hover:text-white">2022</button>
+          <button data-year="2021" class="year-filter-btn px-3 py-1 font-bold rounded-lg transition-all text-slate-400 hover:text-white">2021</button>
+          <button data-year="2020" class="year-filter-btn px-3 py-1 font-bold rounded-lg transition-all text-slate-400 hover:text-white">2020</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- 10 Kasus Terbesar -->
+        <div class="lg:col-span-7 cyber-card p-5 rounded-xl border border-[#00F0FF]/25 flex flex-col">
+          <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3 font-mono">
+            <div>
+              <h3 class="text-sm font-bold text-white font-display">10 Kasus Korupsi Beban Kerugian Terbesar</h3>
+              <p class="text-xs text-slate-400 font-sans">Nominal audit kerugian keuangan negara (Triliun Rupiah)</p>
+            </div>
+            <span class="text-xs font-bold text-[#FF1A40] px-2 py-0.5 rounded bg-[#FF1A40]/15 border border-[#FF1A40]/30">TOP 10</span>
+          </div>
+          <div class="h-80 w-full relative">
+            <canvas id="barChartKasus"></canvas>
+          </div>
+        </div>
+
+        <!-- Distribusi Sektor -->
+        <div class="lg:col-span-5 cyber-card p-5 rounded-xl border border-[#00F0FF]/25 flex flex-col">
+          <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3 font-mono">
+            <div>
+              <h3 class="text-sm font-bold text-white font-display">Distribusi Korupsi Berdasarkan Sektor</h3>
+              <p class="text-xs text-slate-400 font-sans">Proporsi kasus Swasta, BUMN, Kementerian, dan Pemda</p>
+            </div>
+            <span class="text-xs font-bold text-[#00F0FF] px-2 py-0.5 rounded bg-[#00F0FF]/15 border border-[#00F0FF]/30">SEKTOR</span>
+          </div>
+          <div class="h-80 w-full relative flex items-center justify-center">
+            <canvas id="doughnutChartSektor"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#050811] border-t border-[#00F0FF]/20 text-slate-400 py-8 text-xs font-mono">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+      <p class="text-slate-300 font-bold">&copy; 2024 Komisi Pemberantasan Korupsi Republik Indonesia &bull; Financial Analytics Engine</p>
+      <p class="text-slate-500">Standar Transparansi Data Publik &bull; WCAG 2.1 AA Compliant &bull; Call Center 198</p>
+    </div>
+  </footer>
+
+  <script src="/js/charts.js"></script>
+</body>
+</html>

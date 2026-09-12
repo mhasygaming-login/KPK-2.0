@@ -1,0 +1,6 @@
+{
+  "name": "Portal Transparansi KPK",
+  "description": "Portal Transparansi Data Korupsi & Galeri Penindakan Hukum Resmi Bertema KPK dengan visualisasi analisis data dan galeri kasus.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,110 @@
+{
+  "ringkasan_nasional": {
+    "total_kerugian_negara": 403168100000000,
+    "total_kerugian_formatted": "Rp 403,17 Triliun",
+    "total_tersangka": 1428,
+    "total_kasus_selesai": 1284,
+    "total_aset_disita": 38400000000000,
+    "total_aset_disita_formatted": "Rp 38,40 Triliun",
+    "tingkat_pemulihan_aset_persen": 9.52,
+    "kasus_aktif": 144
+  },
+  "tren_tahunan": [
+    {
+      "tahun": 2020,
+      "nominal_kerugian": 16858100000000,
+      "nominal_miliar": 16858,
+      "jumlah_kasus": 115,
+      "tersangka": 148,
+      "aset_disita_miliar": 3120
+    },
+    {
+      "tahun": 2021,
+      "nominal_kerugian": 2840000000000,
+      "nominal_miliar": 2840,
+      "jumlah_kasus": 127,
+      "tersangka": 162,
+      "aset_disita_miliar": 2400
+    },
+    {
+      "tahun": 2022,
+      "nominal_kerugian": 78350000000000,
+      "nominal_miliar": 78350,
+      "jumlah_kasus": 142,
+      "tersangka": 185,
+      "aset_disita_miliar": 8900
+    },
+    {
+      "tahun": 2023,
+      "nominal_kerugian": 8257000000000,
+      "nominal_miliar": 8257,
+      "jumlah_kasus": 164,
+      "tersangka": 210,
+      "aset_disita_miliar": 5600
+    },
+    {
+      "tahun": 2024,
+      "nominal_kerugian": 300045000000000,
+      "nominal_miliar": 300045,
+      "jumlah_kasus": 89,
+      "tersangka": 124,
+      "aset_disita_miliar": 18380
+    }
+  ],
+  "distribusi_sektor": [
+    {
+      "sektor": "Swasta",
+      "persentase": 54.2,
+      "total_nominal": 378000000000000,
+      "total_kasus": 285,
+      "warna": "#DC2626"
+    },
+    {
+      "sektor": "BUMN",
+      "persentase": 24.8,
+      "total_nominal": 16925000000000,
+      "total_kasus": 194,
+      "warna": "#1B4079"
+    },
+    {
+      "sektor": "Kementerian",
+      "persentase": 13.5,
+      "total_nominal": 8190100000000,
+      "total_kasus": 240,
+      "warna": "#2C5AA0"
+    },
+    {
+      "sektor": "Pemerintah Daerah",
+      "persentase": 7.5,
+      "total_nominal": 90000000000,
+      "total_kasus": 565,
+      "warna": "#D97706"
+    }
+  ],
+  "dampak_sosial_ekivalen": {
+    "gedung_sekolah_dasar": 80633,
+    "puskesmas_rawat_inap": 26877,
+    "bantuan_beasiswa_kuliah": 4031681,
+    "kilometer_jalan_tol": 1612
+  },
+  "fluktuasi_bulanan_2024": [
+    { "bulan": "Jan", "kerugian_triliun": 12.4, "aset_disita_triliun": 1.8, "open": 10.2, "high": 14.1, "low": 9.8, "close": 12.4, "status": "bullish" },
+    { "bulan": "Feb", "kerugian_triliun": 18.2, "aset_disita_triliun": 2.4, "open": 12.4, "high": 19.5, "low": 12.0, "close": 18.2, "status": "bullish" },
+    { "bulan": "Mar", "kerugian_triliun": 271.0, "aset_disita_triliun": 9.2, "open": 18.2, "high": 275.0, "low": 18.0, "close": 271.0, "status": "surge" },
+    { "bulan": "Apr", "kerugian_triliun": 8.5, "aset_disita_triliun": 1.5, "open": 271.0, "high": 271.0, "low": 7.8, "close": 8.5, "status": "bearish" },
+    { "bulan": "Mei", "kerugian_triliun": 14.1, "aset_disita_triliun": 2.1, "open": 8.5, "high": 16.0, "low": 8.1, "close": 14.1, "status": "bullish" },
+    { "bulan": "Jun", "kerugian_triliun": 9.8, "aset_disita_triliun": 1.7, "open": 14.1, "high": 14.5, "low": 9.2, "close": 9.8, "status": "bearish" },
+    { "bulan": "Jul", "kerugian_triliun": 15.6, "aset_disita_triliun": 2.9, "open": 9.8, "high": 17.0, "low": 9.5, "close": 15.6, "status": "bullish" },
+    { "bulan": "Agu", "kerugian_triliun": 11.2, "aset_disita_triliun": 2.0, "open": 15.6, "high": 15.8, "low": 10.8, "close": 11.2, "status": "bearish" },
+    { "bulan": "Sep", "kerugian_triliun": 7.4, "aset_disita_triliun": 1.2, "open": 11.2, "high": 12.0, "low": 7.1, "close": 7.4, "status": "bearish" },
+    { "bulan": "Okt", "kerugian_triliun": 13.9, "aset_disita_triliun": 2.3, "open": 7.4, "high": 14.8, "low": 7.2, "close": 13.9, "status": "bullish" },
+    { "bulan": "Nov", "kerugian_triliun": 10.5, "aset_disita_triliun": 1.9, "open": 13.9, "high": 14.0, "low": 10.1, "close": 10.5, "status": "bearish" },
+    { "bulan": "Des", "kerugian_triliun": 8.1, "aset_disita_triliun": 1.6, "open": 10.5, "high": 11.0, "low": 7.9, "close": 8.1, "status": "bearish" }
+  ],
+  "live_audit_feed": [
+    { "time": "11:45:20 WIB", "action": "BLOKIR REKENING", "target": "Kasus PT Timah / Harvey Moeis", "nominal": "Rp 76.5 Miliar", "status": "CONFIRMED" },
+    { "time": "10:12:05 WIB", "action": "PENYITAAN ASET FISIK", "target": "Surya Darmadi (PT Duta Palma)", "nominal": "3 Unit Helikopter & Kebun Sawit", "status": "EXECUTED" },
+    { "time": "09:30:15 WIB", "action": "EKSEKUSI UANG PENGGANTI", "target": "Setya Novanto (e-KTP)", "nominal": "USD 7.3 Juta (Cicilan)", "status": "DEPOSITED" },
+    { "time": "08:15:00 WIB", "action": "FORENSIK FINANSIAL", "target": "Rafael Alun Trisambodo", "nominal": "Safe Deposit Box Rp 37 Miliar", "status": "VERIFIED" }
+  ]
+}

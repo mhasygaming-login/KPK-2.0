@@ -1,0 +1,401 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Orbitron', 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Cyber Trading Color Tokens */
+  --color-void: #050811;
+  --color-void-surface: #090D16;
+  --color-cyber-panel: rgba(15, 23, 42, 0.75);
+
+  --color-neon-crimson: #FF1A40;
+  --color-neon-crimson-glow: rgba(255, 26, 64, 0.4);
+
+  --color-neon-emerald: #00FF88;
+  --color-neon-emerald-glow: rgba(0, 255, 136, 0.4);
+
+  --color-neon-cyan: #00F0FF;
+  --color-neon-cyan-glow: rgba(0, 240, 255, 0.4);
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #94A3B8;
+  --color-text-data: #00F0FF;
+}
+
+:root {
+  /* Cyber Trading Base Variables */
+  --bg-void: #050811;
+  --bg-surface: rgba(15, 23, 42, 0.75);
+  --bg-surface-elevated: rgba(22, 32, 54, 0.85);
+
+  --neon-cyan: #00F0FF;
+  --neon-cyan-muted: rgba(0, 240, 255, 0.15);
+  --neon-cyan-glow: 0 0 15px rgba(0, 240, 255, 0.45);
+
+  --neon-crimson: #FF1A40;
+  --neon-crimson-muted: rgba(255, 26, 64, 0.15);
+  --neon-crimson-glow: 0 0 15px rgba(255, 26, 64, 0.45);
+
+  --neon-emerald: #00FF88;
+  --neon-emerald-muted: rgba(0, 255, 136, 0.15);
+  --neon-emerald-glow: 0 0 15px rgba(0, 255, 136, 0.45);
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-data: #00F0FF;
+
+  --border-cyber: rgba(0, 240, 255, 0.2);
+  --border-cyber-hover: #00F0FF;
+
+  --font-headline: 'Orbitron', 'Plus Jakarta Sans', sans-serif;
+  --font-data: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, .font-headline {
+  font-family: 'Orbitron', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ==========================================================================
+   Cyber Grid & Atmosphere Background
+   ========================================================================== */
+.cyber-grid {
+  background-color: #050811;
+  background-image: 
+    linear-gradient(to right, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 20px 20px;
+  background-position: 0 0, 0 0, 10px 10px;
+}
+
+/* ==========================================================================
+   Cyber Glassmorphism & Angled Cut Panels
+   ========================================================================== */
+.glass-panel,
+.cyber-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.cyber-panel-angled {
+  clip-path: polygon(
+    0 12px, 
+    12px 0, 
+    calc(100% - 12px) 0, 
+    100% 12px, 
+    100% calc(100% - 12px), 
+    calc(100% - 12px) 100%, 
+    12px 100%, 
+    0 calc(100% - 12px)
+  );
+}
+
+.cyber-card,
+.portal-card,
+.glass-card {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 240, 255, 0.18);
+  border-radius: 14px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.cyber-card::before,
+.portal-card::before,
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.5), transparent);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-card:hover,
+.portal-card:hover,
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: #00F0FF;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35), 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+}
+
+.cyber-card-danger:hover,
+.glass-card-crimson:hover {
+  transform: translateY(-4px);
+  border-color: #FF1A40;
+  box-shadow: 0 0 20px rgba(255, 26, 64, 0.45), 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   Terminal Header & Status Indicator LEDs
+   ========================================================================== */
+.terminal-hud-bar {
+  background: rgba(9, 13, 22, 0.9);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #94A3B8;
+}
+
+.led-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.led-green {
+  background-color: #00FF88;
+  box-shadow: 0 0 10px #00FF88, 0 0 20px rgba(0, 255, 136, 0.5);
+  animation: ledPulse 1.8s infinite;
+}
+
+.led-red {
+  background-color: #FF1A40;
+  box-shadow: 0 0 10px #FF1A40, 0 0 20px rgba(255, 26, 64, 0.5);
+  animation: ledPulse 1.8s infinite;
+}
+
+.led-cyan {
+  background-color: #00F0FF;
+  box-shadow: 0 0 10px #00F0FF, 0 0 20px rgba(0, 240, 255, 0.5);
+  animation: ledPulse 1.8s infinite;
+}
+
+@keyframes ledPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   Cyber Ticker / Marquee Bar
+   ========================================================================== */
+.ticker-container {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #050811;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  display: flex;
+  position: relative;
+  z-index: 40;
+}
+
+.ticker-track {
+  display: inline-flex;
+  gap: 3rem;
+  animation: tickerScroll 28s linear infinite;
+  padding: 0.45rem 0;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.725rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.ticker-up {
+  color: #00FF88;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+}
+
+.ticker-down {
+  color: #FF1A40;
+  text-shadow: 0 0 8px rgba(255, 26, 64, 0.5);
+}
+
+.ticker-cyan {
+  color: #00F0FF;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+}
+
+/* ==========================================================================
+   Target Intelligence Dossier Photo Frame & Scanline FX
+   ========================================================================== */
+.dossier-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+}
+
+.dossier-frame::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 240, 255, 0.12) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.04),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.04)
+  );
+  z-index: 2;
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+/* Subtle Animated Scanline */
+.scanline-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 240, 255, 0.8), transparent);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+  animation: scanlinePass 2.8s linear infinite;
+  z-index: 3;
+  pointer-events: none;
+}
+
+@keyframes scanlinePass {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(1200%); opacity: 0; }
+}
+
+/* Corner bracket accents */
+.corner-bracket-tl {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #00F0FF;
+  border-left: 2px solid #00F0FF;
+  pointer-events: none;
+}
+
+.corner-bracket-br {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #00F0FF;
+  border-right: 2px solid #00F0FF;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Cyber Button & Micro-Interactions
+   ========================================================================== */
+.cyber-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  background: rgba(0, 240, 255, 0.1);
+  color: #00F0FF;
+}
+
+.cyber-btn:hover {
+  background: #00F0FF;
+  color: #050811;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.cyber-btn-crimson {
+  border: 1px solid rgba(255, 26, 64, 0.5);
+  background: rgba(255, 26, 64, 0.15);
+  color: #FF1A40;
+}
+
+.cyber-btn-crimson:hover {
+  background: #FF1A40;
+  color: #FFFFFF;
+  box-shadow: 0 0 25px rgba(255, 26, 64, 0.65);
+  transform: translateY(-2px);
+}
+
+/* Neon Text Glows */
+.glow-cyan {
+  color: #00F0FF;
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.65), 0 0 25px rgba(0, 240, 255, 0.3);
+}
+
+.glow-crimson {
+  color: #FF1A40;
+  text-shadow: 0 0 12px rgba(255, 26, 64, 0.65), 0 0 25px rgba(255, 26, 64, 0.3);
+}
+
+.glow-emerald {
+  color: #00FF88;
+  text-shadow: 0 0 12px rgba(0, 255, 136, 0.65), 0 0 25px rgba(0, 255, 136, 0.3);
+}
+
+/* Monospace Numbers */
+.font-mono-data {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+/* Custom Cyber Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #050811;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00F0FF;
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
