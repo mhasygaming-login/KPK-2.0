@@ -118,11 +118,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onNavig
                 </span>
               </div>
               <div>
-                <div className="font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center gap-2 font-display">
+                <div className="font-extrabold text-base sm:text-lg tracking-tight text-white flex items-center font-display">
                   <span>KPK INTELLIGENCE</span>
-                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#00F0FF]/15 text-[#00F0FF] border border-[#00F0FF]/30 font-mono font-semibold">
-                    v2.4
-                  </span>
                 </div>
                 <div className="text-[10px] text-slate-400 font-mono tracking-wider uppercase flex items-center gap-1.5">
                   <span className="text-[#00F0FF]">TERMINAL</span>
@@ -133,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onNavig
             </div>
 
             {/* Desktop Navigation with Active Scroll-Spy Indicators */}
-            <nav id="desktopNav" className="hidden lg:flex items-center gap-1.5 font-mono text-xs">
+            <nav id="desktopNav" className="hidden lg:flex items-center gap-2 font-mono text-xs">
               <button
                 id="navBeranda"
                 onClick={() => handleLinkClick('beranda')}
@@ -185,40 +182,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onNavig
                 <Lock className="w-3.5 h-3.5 text-[#FF1A40]" />
                 <span>EDUKASI & KWS</span>
               </button>
-
-              {/* Terminal Standalone Links */}
-              <div className="ml-3 pl-3 border-l border-[#00F0FF]/20 flex items-center gap-1.5">
-                <a
-                  href="/analisis.html"
-                  target="_blank"
-                  rel="noreferrer"
-                  title="Trading Terminal Standalone HTML"
-                  className="px-2.5 py-1 rounded bg-[#090D16] hover:bg-[#00F0FF]/10 text-slate-300 hover:text-[#00F0FF] border border-[#00F0FF]/20 hover:border-[#00F0FF]/60 transition-all flex items-center gap-1 text-[11px]"
-                >
-                  <span>TERMINAL</span>
-                  <ExternalLink className="w-2.5 h-2.5 text-[#00F0FF]" />
-                </a>
-                <a
-                  href="/galeri.html"
-                  target="_blank"
-                  rel="noreferrer"
-                  title="Dossier Gallery Standalone HTML"
-                  className="px-2.5 py-1 rounded bg-[#090D16] hover:bg-[#00F0FF]/10 text-slate-300 hover:text-[#00F0FF] border border-[#00F0FF]/20 hover:border-[#00F0FF]/60 transition-all flex items-center gap-1 text-[11px]"
-                >
-                  <span>DOSSIER</span>
-                  <ExternalLink className="w-2.5 h-2.5 text-[#00F0FF]" />
-                </a>
-                <a
-                  href="/laporan.html"
-                  target="_blank"
-                  rel="noreferrer"
-                  title="KWS Secure Whistleblower Standalone HTML"
-                  className="px-2.5 py-1 rounded bg-[#090D16] hover:bg-[#FF1A40]/10 text-slate-300 hover:text-[#FF1A40] border border-[#FF1A40]/20 hover:border-[#FF1A40]/60 transition-all flex items-center gap-1 text-[11px]"
-                >
-                  <span>KWS</span>
-                  <ExternalLink className="w-2.5 h-2.5 text-[#FF1A40]" />
-                </a>
-              </div>
             </nav>
 
             {/* Mobile Menu Toggle */}
@@ -241,48 +204,36 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onNavig
         <div id="mobileMenuDrawer" className="lg:hidden bg-[#050811]/95 backdrop-blur-xl border-b border-[#00F0FF]/30 px-4 py-4 space-y-2 font-mono text-sm shadow-2xl">
           <button
             onClick={() => handleLinkClick('beranda')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold ${
-              activeTab === 'beranda' ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/50' : 'text-slate-300'
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold transition-all ${
+              activeTab === 'beranda' ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/50' : 'text-slate-300 hover:text-white'
             }`}
           >
-            <Home className="w-4 h-4 text-[#00F0FF]" /> BERANDA (HERO & HUD METRICS)
+            <Home className="w-4 h-4 text-[#00F0FF]" /> BERANDA
           </button>
           <button
             onClick={() => handleLinkClick('analisis')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold ${
-              activeTab === 'analisis' ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/50' : 'text-slate-300'
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold transition-all ${
+              activeTab === 'analisis' ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/50' : 'text-slate-300 hover:text-white'
             }`}
           >
-            <Activity className="w-4 h-4 text-[#00F0FF]" /> LIVE ANALYTICS (TRADING TERMINAL)
+            <Activity className="w-4 h-4 text-[#00F0FF]" /> LIVE ANALYTICS
           </button>
           <button
             onClick={() => handleLinkClick('galeri')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold ${
-              activeTab === 'galeri' ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/50' : 'text-slate-300'
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold transition-all ${
+              activeTab === 'galeri' ? 'bg-[#00F0FF]/20 text-[#00F0FF] border border-[#00F0FF]/50' : 'text-slate-300 hover:text-white'
             }`}
           >
-            <Users className="w-4 h-4 text-[#00F0FF]" /> DOSSIER PELAKU & PERKARA
+            <Users className="w-4 h-4 text-[#00F0FF]" /> DOSSIER PELAKU
           </button>
           <button
             onClick={() => handleLinkClick('edukasi')}
-            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold ${
-              activeTab === 'edukasi' ? 'bg-[#FF1A40]/20 text-[#FF1A40] border border-[#FF1A40]/50' : 'text-slate-300'
+            className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-bold transition-all ${
+              activeTab === 'edukasi' ? 'bg-[#FF1A40]/20 text-[#FF1A40] border border-[#FF1A40]/50' : 'text-slate-300 hover:text-white'
             }`}
           >
-            <Lock className="w-4 h-4 text-[#FF1A40]" /> EDUKASI & FORMULIR KWS
+            <Lock className="w-4 h-4 text-[#FF1A40]" /> EDUKASI & KWS
           </button>
-
-          <div className="pt-3 border-t border-slate-800 grid grid-cols-3 gap-2 text-center text-xs">
-            <a href="/analisis.html" target="_blank" rel="noreferrer" className="py-2 bg-[#090D16] border border-[#00F0FF]/20 rounded-lg text-slate-300 hover:text-[#00F0FF]">
-              HTML TERMINAL
-            </a>
-            <a href="/galeri.html" target="_blank" rel="noreferrer" className="py-2 bg-[#090D16] border border-[#00F0FF]/20 rounded-lg text-slate-300 hover:text-[#00F0FF]">
-              HTML DOSSIER
-            </a>
-            <a href="/laporan.html" target="_blank" rel="noreferrer" className="py-2 bg-[#090D16] border border-[#FF1A40]/20 rounded-lg text-slate-300 hover:text-[#FF1A40]">
-              HTML KWS
-            </a>
-          </div>
         </div>
       )}
     </header>

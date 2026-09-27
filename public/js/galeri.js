@@ -70,13 +70,13 @@ function renderGallery(data) {
           <!-- Header Card: Dossier Frame & Status Badge -->
           <div class="flex items-start justify-between gap-3 mb-4">
             <div class="flex items-center gap-3">
-              <div class="dossier-frame w-16 h-16 shrink-0 relative">
-                <div class="scanline-beam"></div>
+              <div class="dossier-frame w-16 h-16 shrink-0 relative overflow-hidden rounded-xl">
                 <img 
                   src="${item.foto_url}" 
                   alt="${item.nama}" 
+                  referrerpolicy="no-referrer"
                   class="w-full h-full object-cover"
-                  onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80'"
+                  onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' viewBox=\'0 0 120 120\'><rect width=\'120\' height=\'120\' fill=\'%230b1120\'/><circle cx=\'60\' cy=\'46\' r=\'22\' fill=\'%231e293b\'/><path d=\'M26 100 C26 76 42 66 60 66 C78 66 94 76 94 100 Z\' fill=\'%231e293b\'/><rect x=\'2\' y=\'2\' width=\'116\' height=\'116\' fill=\'none\' stroke=\'%2300F0FF\' stroke-width=\'1.5\' stroke-dasharray=\'4,4\'/><text x=\'60\' y=\'112\' font-family=\'monospace\' font-size=\'9\' fill=\'%2300F0FF\' text-anchor=\'middle\'>[DOSSIER]</text></svg>'"
                 />
               </div>
               <div>
@@ -128,6 +128,36 @@ function setupEventListeners() {
   const searchInput = document.getElementById('searchPelaku');
   const sortSelect = document.getElementById('sortPelaku');
   const sektorFilter = document.getElementById('filterSektor');
+  const btnSortAmount = document.getElementById('btnSortAmount');
+  const btnSortYear = document.getElementById('btnSortYear');
+  const btnSortCategory = document.getElementById('btnSortCategory');
+
+  function updateQuickSortButtons(currentVal) {
+    const isAmount = currentVal === 'highest' || currentVal === 'lowest';
+    const isYear = currentVal === 'newest' || currentVal === 'oldest';
+    const isCategory = currentVal === 'category_asc' || currentVal === 'category_desc';
+
+    if (btnSortAmount) {
+      btnSortAmount.className = isAmount
+        ? 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-[#FF1A40]/25 text-[#FF1A40] border border-[#FF1A40]/60 shadow-[0_0_10px_rgba(255,26,64,0.3)] cursor-pointer'
+        : 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white border border-transparent cursor-pointer';
+      btnSortAmount.innerHTML = currentVal === 'lowest' ? '💰 Corruption Amount (↑)' : '💰 Corruption Amount (↓)';
+    }
+
+    if (btnSortYear) {
+      btnSortYear.className = isYear
+        ? 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-[#00F0FF]/25 text-[#00F0FF] border border-[#00F0FF]/60 shadow-[0_0_10px_rgba(0,240,255,0.3)] cursor-pointer'
+        : 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white border border-transparent cursor-pointer';
+      btnSortYear.innerHTML = currentVal === 'oldest' ? '📅 Year (↑ 2020)' : '📅 Year (↓ 2024)';
+    }
+
+    if (btnSortCategory) {
+      btnSortCategory.className = isCategory
+        ? 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all bg-[#00FF88]/25 text-[#00FF88] border border-[#00FF88]/60 shadow-[0_0_10px_rgba(0,255,136,0.3)] cursor-pointer'
+        : 'px-2.5 py-1 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white border border-transparent cursor-pointer';
+      btnSortCategory.innerHTML = currentVal === 'category_desc' ? '🏷️ Case Category (Z-A)' : '🏷️ Case Category (A-Z)';
+    }
+  }
 
   function applyFilters() {
     let query = searchInput ? searchInput.value.toLowerCase().trim() : '';
@@ -149,16 +179,44 @@ function setupEventListeners() {
       result.sort((a, b) => a.nominal_kerugian - b.nominal_kerugian);
     } else if (sortVal === 'newest') {
       result.sort((a, b) => b.tahun_penindakan - a.tahun_penindakan);
+    } else if (sortVal === 'oldest') {
+      result.sort((a, b) => a.tahun_penindakan - b.tahun_penindakan);
+    } else if (sortVal === 'category_asc') {
+      result.sort((a, b) => a.instansi.localeCompare(b.instansi) || a.kasus.localeCompare(b.kasus));
+    } else if (sortVal === 'category_desc') {
+      result.sort((a, b) => b.instansi.localeCompare(a.instansi) || b.kasus.localeCompare(a.kasus));
     } else if (sortVal === 'name') {
       result.sort((a, b) => a.nama.localeCompare(b.nama));
     }
 
+    updateQuickSortButtons(sortVal);
     renderGallery(result);
   }
 
   if (searchInput) searchInput.addEventListener('input', applyFilters);
   if (sortSelect) sortSelect.addEventListener('change', applyFilters);
   if (sektorFilter) sektorFilter.addEventListener('change', applyFilters);
+
+  if (btnSortAmount && sortSelect) {
+    btnSortAmount.addEventListener('click', () => {
+      sortSelect.value = sortSelect.value === 'highest' ? 'lowest' : 'highest';
+      applyFilters();
+    });
+  }
+
+  if (btnSortYear && sortSelect) {
+    btnSortYear.addEventListener('click', () => {
+      sortSelect.value = sortSelect.value === 'newest' ? 'oldest' : 'newest';
+      applyFilters();
+    });
+  }
+
+  if (btnSortCategory && sortSelect) {
+    btnSortCategory.addEventListener('click', () => {
+      sortSelect.value = sortSelect.value === 'category_asc' ? 'category_desc' : 'category_asc';
+      applyFilters();
+    });
+  }
 }
 
 function openPelakuDetail(id) {
@@ -171,9 +229,8 @@ function openPelakuDetail(id) {
 
   modalBody.innerHTML = `
     <div class="flex flex-col md:flex-row gap-6 items-start font-mono">
-      <div class="dossier-frame w-24 h-24 shrink-0 relative">
-        <div class="scanline-beam"></div>
-        <img src="${item.foto_url}" alt="${item.nama}" class="w-full h-full object-cover">
+      <div class="dossier-frame w-24 h-24 shrink-0 relative overflow-hidden rounded-xl">
+        <img src="${item.foto_url}" alt="${item.nama}" referrerpolicy="no-referrer" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\' viewBox=\'0 0 120 120\'><rect width=\'120\' height=\'120\' fill=\'%230b1120\'/><circle cx=\'60\' cy=\'46\' r=\'22\' fill=\'%231e293b\'/><path d=\'M26 100 C26 76 42 66 60 66 C78 66 94 76 94 100 Z\' fill=\'%231e293b\'/><rect x=\'2\' y=\'2\' width=\'116\' height=\'116\' fill=\'none\' stroke=\'%2300F0FF\' stroke-width=\'1.5\' stroke-dasharray=\'4,4\'/><text x=\'60\' y=\'112\' font-family=\'monospace\' font-size=\'9\' fill=\'%2300F0FF\' text-anchor=\'middle\'>[DOSSIER]</text></svg>'">
       </div>
       <div class="flex-1">
         <div class="text-[10px] text-[#00F0FF] tracking-wider mb-1 flex items-center gap-1.5">

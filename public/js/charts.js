@@ -408,19 +408,45 @@ function initTickerStream() {
   const feedContainer = document.getElementById('liveAuditFeedList');
   if (!feedContainer || !rawStatistikData?.live_audit_feed) return;
 
-  feedContainer.innerHTML = rawStatistikData.live_audit_feed.map(item => `
-    <div class="flex items-center justify-between text-xs py-2 border-b border-slate-800/80 font-mono">
-      <div class="flex items-center gap-2">
-        <span class="text-[#00F0FF] font-bold">${item.time}</span>
-        <span class="text-white font-semibold">${item.action}</span>
-        <span class="text-slate-400 text-[11px] truncate max-w-[140px]">${item.target}</span>
+  feedContainer.innerHTML = rawStatistikData.live_audit_feed.map(item => {
+    let statusClass = 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
+    if (item.status === 'EXECUTED') {
+      statusClass = 'bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/30';
+    } else if (item.status === 'DEPOSITED') {
+      statusClass = 'bg-amber-400/10 text-amber-400 border border-amber-400/30';
+    } else if (item.status === 'VERIFIED') {
+      statusClass = 'bg-teal-400/10 text-teal-400 border border-teal-400/30';
+    }
+
+    return `
+      <div class="group p-2.5 rounded-lg bg-[#050811]/70 hover:bg-[#00F0FF]/5 border border-slate-800/80 hover:border-[#00F0FF]/30 transition-all duration-150">
+        <!-- Baris 1: Waktu, Aksi & Status Badge -->
+        <div class="flex items-center justify-between gap-2 mb-1.5">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="font-mono text-[11px] font-semibold text-[#00F0FF] whitespace-nowrap bg-[#00F0FF]/10 px-1.5 py-0.5 rounded border border-[#00F0FF]/25 shrink-0">
+              ${item.time}
+            </span>
+            <span class="text-xs font-semibold text-slate-200 group-hover:text-white truncate">
+              ${item.action}
+            </span>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider shrink-0 ${statusClass}">
+            ${item.status}
+          </span>
+        </div>
+
+        <!-- Baris 2: Target Kasus & Nilai Eksekusi -->
+        <div class="flex items-center justify-between gap-2 text-xs">
+          <span class="text-[11px] text-slate-400 truncate flex-1" title="${item.target}">
+            ${item.target}
+          </span>
+          <span class="font-mono font-bold text-xs text-[#00FF88] shrink-0 text-right whitespace-nowrap">
+            ${item.nominal}
+          </span>
+        </div>
       </div>
-      <div class="flex items-center gap-2 shrink-0">
-        <span class="text-[#00FF88] font-bold">${item.nominal}</span>
-        <span class="px-1.5 py-0.5 rounded bg-[#00FF88]/15 text-[#00FF88] text-[10px] border border-[#00FF88]/30 font-bold">${item.status}</span>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 document.addEventListener('DOMContentLoaded', initCharts);

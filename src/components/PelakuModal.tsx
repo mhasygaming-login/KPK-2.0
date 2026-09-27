@@ -34,15 +34,15 @@ export const PelakuModal: React.FC<PelakuModalProps> = ({ pelaku, onClose }) => 
 
         {/* Dossier Terminal Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pb-6 border-b border-[#00F0FF]/20">
-          <div className="dossier-frame w-20 h-20 sm:w-24 sm:h-24 shrink-0 relative">
-            <div className="scanline-beam"></div>
+          <div className="dossier-frame w-20 h-20 sm:w-24 sm:h-24 shrink-0 relative overflow-hidden rounded-xl">
             <img
               src={pelaku.foto_url}
               alt={pelaku.nama}
+              referrerPolicy="no-referrer"
               className="w-full h-full object-cover"
               onError={(e) => {
                 (e.target as HTMLImageElement).src =
-                  'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&auto=format&fit=crop&q=80';
+                  "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><rect width='120' height='120' fill='%230b1120'/><circle cx='60' cy='46' r='22' fill='%231e293b'/><path d='M26 100 C26 76 42 66 60 66 C78 66 94 76 94 100 Z' fill='%231e293b'/><rect x='2' y='2' width='116' height='116' fill='none' stroke='%2300F0FF' stroke-width='1.5' stroke-dasharray='4,4'/><text x='60' y='112' font-family='monospace' font-size='9' fill='%2300F0FF' text-anchor='middle'>[DOSSIER]</text></svg>";
               }}
             />
           </div>

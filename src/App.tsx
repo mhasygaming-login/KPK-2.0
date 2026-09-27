@@ -124,12 +124,12 @@ export default function App() {
       />
 
       {/* Main Container Multi-Section Landing Page */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3.5 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 space-y-16 sm:space-y-20 lg:space-y-24">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-32 space-y-4">
-            <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-            <p className="text-sm font-mono text-cyan-400 font-semibold tracking-wider">
-              MEMUAT DATA TRANSPARANSI FORENSIK KPK...
+            <div className="w-12 h-12 border-4 border-[#00F0FF] border-t-transparent rounded-full animate-spin"></div>
+            <p className="text-xs sm:text-sm font-mono text-[#00F0FF] font-semibold tracking-wider">
+              MEMUAT DATA TRANSPARANSI KPK...
             </p>
           </div>
         ) : (
@@ -138,7 +138,7 @@ export default function App() {
             <section 
               id="beranda" 
               ref={berandaRef} 
-              className="scroll-mt-28 transition-all duration-300"
+              className="scroll-mt-24 transition-all duration-300"
             >
               <DashboardView
                 pelakuList={pelakuList}
@@ -148,21 +148,11 @@ export default function App() {
               />
             </section>
 
-            {/* Section Divider */}
-            <div className="relative flex py-2 items-center">
-              <div className="flex-grow border-t border-slate-800"></div>
-              <span className="flex-shrink mx-4 text-xs font-mono font-bold text-slate-500 px-3 py-1 rounded-full bg-[#0F172A] border border-slate-800 flex items-center gap-1.5">
-                <Activity className="w-3.5 h-3.5 text-cyan-400" />
-                MODUL 02 / ANALISIS KEUANGAN & PEMULIHAN ASET
-              </span>
-              <div className="flex-grow border-t border-slate-800"></div>
-            </div>
-
             {/* 2. LIVE ANALYTICS SECTION (Trading Terminal & Detailed Sektoral Breakdown) */}
             <section 
               id="analisis" 
               ref={analisisRef} 
-              className="scroll-mt-28 transition-all duration-300"
+              className="scroll-mt-24 transition-all duration-300"
             >
               <AnalyticsView
                 pelakuList={pelakuList}
@@ -170,21 +160,11 @@ export default function App() {
               />
             </section>
 
-            {/* Section Divider */}
-            <div className="relative flex py-2 items-center">
-              <div className="flex-grow border-t border-slate-800"></div>
-              <span className="flex-shrink mx-4 text-xs font-mono font-bold text-slate-500 px-3 py-1 rounded-full bg-[#0F172A] border border-slate-800 flex items-center gap-1.5">
-                <Users className="w-3.5 h-3.5 text-cyan-400" />
-                MODUL 03 / GALERI PENINDAKAN & DOSSIER PELAKU
-              </span>
-              <div className="flex-grow border-t border-slate-800"></div>
-            </div>
-
             {/* 3. GALERI PELAKU & KASUS SECTION */}
             <section 
               id="galeri" 
               ref={galeriRef} 
-              className="scroll-mt-28 transition-all duration-300"
+              className="scroll-mt-24 transition-all duration-300"
             >
               <GalleryView
                 pelakuList={pelakuList}
@@ -192,21 +172,11 @@ export default function App() {
               />
             </section>
 
-            {/* Section Divider */}
-            <div className="relative flex py-2 items-center">
-              <div className="flex-grow border-t border-slate-800"></div>
-              <span className="flex-shrink mx-4 text-xs font-mono font-bold text-slate-500 px-3 py-1 rounded-full bg-[#0F172A] border border-slate-800 flex items-center gap-1.5">
-                <Lock className="w-3.5 h-3.5 text-rose-400" />
-                MODUL 04 / EDUKASI ANTI-KORUPSI & FORMULIR PENGADUAN (KWS)
-              </span>
-              <div className="flex-grow border-t border-slate-800"></div>
-            </div>
-
             {/* 4. EDUKASI & PENGADUAN MASYARAKAT SECTION */}
             <section 
               id="edukasi" 
               ref={edukasiRef} 
-              className="scroll-mt-28 transition-all duration-300"
+              className="scroll-mt-24 transition-all duration-300"
             >
               <WhistleblowerView />
             </section>
@@ -234,7 +204,7 @@ export default function App() {
       )}
 
       {/* Footer */}
-      <Footer />
+      <Footer onNavigate={scrollToSection} />
     </div>
   );
 }

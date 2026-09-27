@@ -75,5 +75,15 @@ export interface StatistikData {
 export type ActiveTab = 'beranda' | 'analisis' | 'galeri' | 'edukasi' | 'laporan';
 export type TimeframeOption = '1m' | '6m' | '1y' | 'all';
 export type ChartViewMode = 'overview' | 'sector' | 'candlestick';
-export type SortOption = 'highest' | 'lowest' | 'newest' | 'name';
+export type SortOption = 
+  | 'amount_desc' 
+  | 'amount_asc' 
+  | 'year_desc' 
+  | 'year_asc' 
+  | 'category_asc' 
+  | 'category_desc' 
+  | 'highest' 
+  | 'lowest' 
+  | 'newest' 
+  | 'name';
 

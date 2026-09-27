@@ -274,8 +274,8 @@ export const TradingTerminal: React.FC<TradingTerminalProps> = ({ statistik, pel
         </div>
 
         {/* HUD Quick Metrics */}
-        <div className="flex items-center gap-3 font-mono">
-          <div className="bg-[#050811] border border-[#00F0FF]/30 px-4 py-2.5 rounded-xl text-right shadow-[inset_0_1px_10px_rgba(0,240,255,0.08)]">
+        <div className="flex items-center gap-3 font-mono self-start sm:self-auto w-full sm:w-auto justify-between sm:justify-end">
+          <div className="bg-[#050811] border border-[#00F0FF]/30 px-4 py-2.5 rounded-xl text-right shadow-[inset_0_1px_10px_rgba(0,240,255,0.08)] flex-1 sm:flex-initial">
             <span className="text-[10px] text-slate-400 block uppercase font-bold tracking-wider">
               RECOVERY RATE
             </span>
@@ -289,7 +289,7 @@ export const TradingTerminal: React.FC<TradingTerminalProps> = ({ statistik, pel
             href="/analisis.html"
             target="_blank"
             rel="noreferrer"
-            className="px-4 py-3 rounded-xl bg-[#00F0FF]/15 hover:bg-[#00F0FF] text-[#00F0FF] hover:text-[#050811] border border-[#00F0FF]/40 text-xs font-bold font-mono uppercase tracking-wider flex items-center gap-2 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)]"
+            className="px-4 py-3 rounded-xl bg-[#00F0FF]/15 hover:bg-[#00F0FF] text-[#00F0FF] hover:text-[#050811] border border-[#00F0FF]/40 text-xs font-bold font-mono uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] shrink-0"
             title="Buka Layar Penuh analisis.html"
           >
             <span>FULLSCREEN</span>
@@ -305,59 +305,59 @@ export const TradingTerminal: React.FC<TradingTerminalProps> = ({ statistik, pel
         <div className="terminal-hud-bar flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 bg-[#090D16] border-b border-[#00F0FF]/25 p-3 sm:p-4">
           
           {/* View Mode Selectors (Tab Style) */}
-          <div className="flex flex-wrap items-center gap-2 font-mono text-xs">
-            <div className="px-2.5 py-1.5 rounded bg-[#050811] border border-[#00F0FF]/30 text-[#00F0FF] font-bold flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-2 font-mono text-xs w-full lg:w-auto">
+            <div className="px-2.5 py-1.5 rounded bg-[#050811] border border-[#00F0FF]/30 text-[#00F0FF] font-bold flex items-center gap-1.5 shrink-0">
               <Activity className="w-3.5 h-3.5 text-[#00F0FF]" />
               MODE:
             </div>
             <button
               onClick={() => setViewMode('overview')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer whitespace-nowrap text-center ${
                 viewMode === 'overview'
                   ? 'bg-[#00F0FF] text-[#050811] shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                   : 'text-slate-400 hover:text-white bg-[#050811] border border-slate-800'
               }`}
             >
-              📈 KERUGIAN VS PEMULIHAN
+              KERUGIAN VS PEMULIHAN
             </button>
             <button
               onClick={() => setViewMode('sector')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer whitespace-nowrap text-center ${
                 viewMode === 'sector'
                   ? 'bg-[#00F0FF] text-[#050811] shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                   : 'text-slate-400 hover:text-white bg-[#050811] border border-slate-800'
               }`}
             >
-              📊 KERUGIAN PER SEKTORE
+              DISTRIBUSI SEKTOR
             </button>
             <button
               onClick={() => setViewMode('candlestick')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer whitespace-nowrap text-center ${
                 viewMode === 'candlestick'
                   ? 'bg-[#00F0FF] text-[#050811] shadow-[0_0_15px_rgba(0,240,255,0.4)]'
                   : 'text-slate-400 hover:text-white bg-[#050811] border border-slate-800'
               }`}
             >
-              🕯️ FLUKTUASI BULANAN 2024
+              FLUKTUASI BULANAN
             </button>
           </div>
 
-          {/* Timeframe Selectors Styled Like Trading Intervals: [1D] [1W] [1M] [1Y] [ALL] */}
-          <div className="flex items-center gap-2 font-mono text-xs">
-            <span className="text-slate-400 font-bold flex items-center gap-1">
+          {/* Timeframe Selectors */}
+          <div className="flex flex-wrap items-center gap-2 font-mono text-xs shrink-0 self-start lg:self-auto">
+            <span className="text-slate-400 font-bold flex items-center gap-1.5 shrink-0">
               <Clock className="w-3.5 h-3.5 text-[#00F0FF]" /> TIMEFRAME:
             </span>
-            <div className="bg-[#050811] p-1 rounded-lg border border-[#00F0FF]/25 flex gap-1">
+            <div className="bg-[#050811] p-1 rounded-lg border border-[#00F0FF]/25 flex items-center gap-1">
               {[
-                { id: '1m', label: '[1M]' },
-                { id: '6m', label: '[6M]' },
-                { id: '1y', label: '[1Y]' },
-                { id: 'all', label: '[ALL]' }
+                { id: '1m', label: '1 Bulan' },
+                { id: '6m', label: '6 Bulan' },
+                { id: '1y', label: '1 Tahun' },
+                { id: 'all', label: 'Semua' }
               ].map((tf) => (
                 <button
                   key={tf.id}
                   onClick={() => setTimeframe(tf.id as TimeframeOption)}
-                  className={`px-2.5 py-1 rounded font-bold font-mono transition-all cursor-pointer ${
+                  className={`px-2.5 py-1 rounded font-bold font-mono transition-all cursor-pointer whitespace-nowrap ${
                     timeframe === tf.id
                       ? 'bg-[#00F0FF] text-[#050811] shadow-[0_0_10px_rgba(0,240,255,0.4)]'
                       : 'text-slate-400 hover:text-white hover:bg-slate-800/80'
@@ -401,30 +401,62 @@ export const TradingTerminal: React.FC<TradingTerminalProps> = ({ statistik, pel
           {/* Live Orderbook / Forensic Feed */}
           <div className="lg:col-span-4 p-4 sm:p-5 bg-[#090D16]/90 flex flex-col justify-between border-l border-[#00F0FF]/15">
             <div>
-              <div className="flex items-center justify-between pb-3 border-b border-[#00F0FF]/20 mb-3 font-mono">
-                <span className="text-xs font-bold text-white uppercase flex items-center gap-2">
-                  <span className="led-indicator led-green"></span>
-                  LIVE FORENSIC FEED
+              <div className="flex items-center justify-between pb-3 border-b border-slate-800/80 mb-3 font-mono">
+                <span className="text-xs font-bold text-slate-200 uppercase flex items-center gap-2 tracking-wider">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF88] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00FF88]"></span>
+                  </span>
+                  LIVE AUDIT EXECUTION STREAM
                 </span>
-                <span className="text-[10px] text-[#00F0FF] px-2 py-0.5 rounded bg-[#00F0FF]/10 border border-[#00F0FF]/30">
-                  256-BIT ENCRYPTED
+                <span className="text-[10px] text-[#00F0FF] px-2 py-0.5 rounded bg-[#00F0FF]/10 border border-[#00F0FF]/30 font-bold tracking-wider">
+                  REAL-TIME
                 </span>
               </div>
 
-              <div className="space-y-2.5 font-mono">
-                {liveAudits.map((item, idx) => (
-                  <div key={idx} className="p-3 rounded-xl bg-[#050811] border border-slate-800/80 hover:border-[#00F0FF]/50 transition-all group">
-                    <div className="flex items-center justify-between text-[11px] mb-1">
-                      <span className="text-[#00F0FF] font-bold">{item.time}</span>
-                      <span className="px-1.5 py-0.5 rounded bg-[#00FF88]/15 text-[#00FF88] text-[10px] font-bold border border-[#00FF88]/30">
-                        {item.status}
-                      </span>
+              <div className="space-y-2 font-mono">
+                {liveAudits.map((item, idx) => {
+                  let statusBadge = 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30';
+                  if (item.status === 'EXECUTED') {
+                    statusBadge = 'bg-[#00F0FF]/10 text-[#00F0FF] border border-[#00F0FF]/30';
+                  } else if (item.status === 'DEPOSITED') {
+                    statusBadge = 'bg-amber-400/10 text-amber-400 border border-amber-400/30';
+                  } else if (item.status === 'VERIFIED') {
+                    statusBadge = 'bg-teal-400/10 text-teal-400 border border-teal-400/30';
+                  }
+
+                  return (
+                    <div 
+                      key={idx} 
+                      className="group p-2.5 rounded-lg bg-[#050811]/70 hover:bg-[#00F0FF]/5 border border-slate-800/80 hover:border-[#00F0FF]/30 transition-all duration-150"
+                    >
+                      {/* Baris 1: Waktu, Aksi & Status Badge */}
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <span className="font-mono text-[11px] font-semibold text-[#00F0FF] whitespace-nowrap bg-[#00F0FF]/10 px-1.5 py-0.5 rounded border border-[#00F0FF]/25 shrink-0">
+                            {item.time}
+                          </span>
+                          <span className="text-xs font-semibold text-slate-200 group-hover:text-white truncate">
+                            {item.action}
+                          </span>
+                        </div>
+                        <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider shrink-0 ${statusBadge}`}>
+                          {item.status}
+                        </span>
+                      </div>
+
+                      {/* Baris 2: Target Kasus & Nilai Nominal */}
+                      <div className="flex items-center justify-between gap-2 text-xs">
+                        <span className="text-[11px] text-slate-400 truncate flex-1" title={item.target}>
+                          {item.target}
+                        </span>
+                        <span className="font-mono font-bold text-xs text-[#00FF88] shrink-0 text-right whitespace-nowrap">
+                          {item.nominal}
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-xs font-bold text-white group-hover:text-[#00F0FF] transition-colors">{item.action}</div>
-                    <div className="text-[11px] text-slate-400 truncate">{item.target}</div>
-                    <div className="text-xs font-black text-[#FF1A40] mt-1 font-mono">{item.nominal}</div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
